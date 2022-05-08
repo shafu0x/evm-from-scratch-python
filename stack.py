@@ -3,7 +3,7 @@ class Stack:
         self.stack = []
 
     def pop(self):
-        self.stack.pop()
+        return self.stack.pop()
 
     def push(self, data):
         self.stack.append(data)
