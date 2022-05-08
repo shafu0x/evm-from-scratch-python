@@ -4,6 +4,8 @@ from arithmetic import *
 from push import _push
 from comp import *
 from logic import *
+from bit import *
+from env import *
 
 
 class CPU:
@@ -48,6 +50,13 @@ class CPU:
             if op == OR:  _or(self)
             if op == XOR: _xor(self)
             if op == NOT: _not(self)
+
+            # BIT
+            if op == SHL: shl(self)
+            if op == SHR: shr(self)
+
+            # ENV
+            if op == ADDRESS: address(self)
 
             # PUSH
             if op == PUSH1:   _push(self, 1)
