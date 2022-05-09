@@ -57,6 +57,9 @@ class CPU:
 
             # ENV
             if op == ADDRESS: address(self)
+            if op == BALANCE: balance(self)
+            if op == ORIGIN: origin(self)
+            if op == CALLER: caller(self)
 
             # PUSH
             if op == PUSH1:   _push(self, 1)
