@@ -60,6 +60,7 @@ class CPU:
             if op == BALANCE: balance(self)
             if op == ORIGIN: origin(self)
             if op == CALLER: caller(self)
+            if op == CALLVALUE: callvalue(self)
 
             # PUSH
             if op == PUSH1:   _push(self, 1)
