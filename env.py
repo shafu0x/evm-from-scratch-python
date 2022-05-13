@@ -12,3 +12,25 @@ def caller(cpu):
 
 def callvalue(cpu):
     cpu.stack.push(0x00)
+
+def calldataload(cpu):
+    i = cpu.stack.pop()
+    cpu.stack.push(0x00)
+
+def calldatasize(cpu):
+    cpu.stack.push(0x00)
+
+def calldatacopy(cpu):
+    destOffset = cpu.stack.pop()
+    offset = cpu.stack.pop()
+    size = cpu.stack.pop()
+    # TODO: copy to memory
+
+def codesize(cpu):
+    cpu.stack.push(0x00)
+
+def codecopy(cpu):
+    destOffset = cpu.stack.pop()
+    offset = cpu.stack.pop()
+    size = cpu.stack.pop()
+    # TODO: copy to memory
