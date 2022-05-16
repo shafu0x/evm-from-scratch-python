@@ -12,7 +12,7 @@ class Stack:
     def pop(self):
         if len(self.stack) == 0: raise StackEmptyException()
 
-        return self.stack.pop().value
+        return self.stack.pop()
 
     def push(self, value):
         if len(self.stack) > 1024: raise StackTooLargeException()
