@@ -16,6 +16,7 @@ class CPU:
         self.stack = Stack()
         self.memory = Memory()
         self.program = []
+        self.gas = 2 # TODO
 
     def load(self, program):
         self.reset()
@@ -26,6 +27,14 @@ class CPU:
 
     def peek(self):
         return self.program[self.pc]
+
+    def gas_dec(self, amount):
+        if self.gas - amount < 0: 
+            raise Exception(f"{self.gas} gas left and {amount} gas required")
+        self.gas -= amount
+
+    def gas_inc(self, amount):
+        self.gas += amount
 
     def run(self):
         op = self.program[self.pc]
