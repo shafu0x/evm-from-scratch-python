@@ -6,12 +6,15 @@ from comp import *
 from logic import *
 from bit import *
 from env import *
+from memory import *
+from memory_ops import *
 
 
 class CPU:
     def __init__(self):
         self.pc = 0
         self.stack = Stack()
+        self.memory = Memory()
         self.program = []
 
     def load(self, program):
@@ -28,6 +31,9 @@ class CPU:
         op = self.program[self.pc]
 
         while op != STOP:
+            print("op: ", hex(op))
+            print("pc: " , self.pc)
+
             # ARITHMETIC
             if op == ADD:    add(self)
             if op == MUL:    mul(self)
@@ -61,6 +67,10 @@ class CPU:
             if op == ORIGIN: origin(self)
             if op == CALLER: caller(self)
             if op == CALLVALUE: callvalue(self)
+
+            # MEMORY
+            # if op == MLOAD: (self)
+            if op == MSTORE8: mstore8(self)
 
             # PUSH
             if op == PUSH1:   _push(self, 1)
@@ -97,3 +107,6 @@ class CPU:
             if op == PUSH32:  _push(self, 32)
 
             op = self.program[self.pc]
+
+            print("stack: ", self.stack.stack)
+            print("memory: ", self.memory.memory)
