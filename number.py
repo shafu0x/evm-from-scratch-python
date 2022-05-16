@@ -14,7 +14,4 @@ class Number:
     def to_list(self, a): return [a for a in a.to_bytes(32, byteorder="big")]
 
 
-    def __str__(self):
-        return f"value: {self.value}"
-    
-
+    def __str__(self): return f"value: {self.value}"
