@@ -18,3 +18,5 @@ class Stack:
         if len(self.stack) > 1024: raise StackTooLargeException()
 
         self.stack.append(Number(value))
+
+    def __str__(self): return " ".join([str(x) for x in self.stack])

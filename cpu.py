@@ -109,5 +109,5 @@ class CPU:
 
             op = self.program[self.pc]
 
-            print("stack: ", self.stack.stack)
+            print("stack: ", self.stack)
             print("memory: ", self.memory.memory)
