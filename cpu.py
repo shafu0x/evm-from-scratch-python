@@ -7,16 +7,19 @@ from logic import *
 from bit import *
 from env import *
 from memory import *
+from storage import *
 from memory_ops import *
 from misc import *
 
 GAS = 21000
 
+# TODO: rename to execution engine or something similar
 class CPU:
     def __init__(self):
         self.pc = 0
         self.stack = Stack()
         self.memory = Memory()
+        self.storage = Storage()
         self.program = []
         self.gas = GAS # TODO
 
