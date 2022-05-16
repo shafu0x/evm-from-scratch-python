@@ -15,10 +15,11 @@ class Memory:
         if type(value) == int:
             self.memory[offset] = value
         else:
-            print(offset)
-            print(len(value))
             self.memory[offset:len(value)] = value
 
-    def load(self):
-        pass
+    def load(self, offset):
+        value = self.memory[offset:offset+32]
+        if len(value) < 32: raise Exception("mload: Not 32 Bytes")
+
+        return value
 

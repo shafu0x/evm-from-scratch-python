@@ -10,3 +10,8 @@ def mstore(cpu):
     cpu.memory.store(offset, value)
     cpu.pc += 1
 
+def mload(cpu): 
+    offset = cpu.stack.pop()
+    value = cpu.memory.load(offset)
+    cpu.stack.push(value)
+    cpu.pc += 1

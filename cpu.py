@@ -69,7 +69,7 @@ class CPU:
             if op == CALLVALUE: callvalue(self)
 
             # MEMORY
-            # if op == MLOAD: (self)
+            if op == MLOAD:   mload(self)
             if op == MSTORE8: mstore8(self)
             if op == MSTORE:  mstore(self)
 
