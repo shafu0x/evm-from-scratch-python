@@ -2,7 +2,8 @@ from utils import *
 
 def byte(cpu):
     i, x = cpu.stack.pop().value, to32(cpu.stack.pop().bytes)
-    cpu.stack.push(x[i])
+    try:    cpu.stack.push(x[i])
+    except: cpu.stack.push(0x00)
     cpu.pc += 1
     cpu.gas_dec(3)
 

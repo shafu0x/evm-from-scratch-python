@@ -2,6 +2,8 @@ class Memory:
     def __init__(self):
         self.memory = []
 
+    def access(self, offset, size): return self.memory[offset:offset+size]
+
     def store(self, offset, value):
         # init memory
         if len(self.memory) == 0:

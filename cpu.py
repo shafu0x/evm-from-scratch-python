@@ -8,7 +8,9 @@ from bit import *
 from env import *
 from memory import *
 from memory_ops import *
+from misc import *
 
+GAS = 21000
 
 class CPU:
     def __init__(self):
@@ -16,7 +18,7 @@ class CPU:
         self.stack = Stack()
         self.memory = Memory()
         self.program = []
-        self.gas = 2 # TODO
+        self.gas = GAS # TODO
 
     def load(self, program):
         self.reset()
@@ -73,12 +75,21 @@ class CPU:
             if op == SHL: shl(self)
             if op == SHR: shr(self)
 
+            # MISC
+            if op == SHA3: sha3(self)
+
             # ENV
-            if op == ADDRESS: address(self)
-            if op == BALANCE: balance(self)
-            if op == ORIGIN: origin(self)
-            if op == CALLER: caller(self)
-            if op == CALLVALUE: callvalue(self)
+            if op == ADDRESS:      address(self)
+            if op == BALANCE:      balance(self)
+            if op == ORIGIN:       origin(self)
+            if op == CALLER:       caller(self)
+            if op == CALLVALUE:    callvalue(self)
+            if op == CALLDATALOAD: calldataload(self)
+            if op == CALLDATASIZE: calldatasize(self)
+            if op == CALLDATACOPY: calldatacopy(self)
+            if op == CODESIZE:     codesize(self)
+            if op == CODECOPY:     codecopy(self)
+            if op == GASPRICE:     gasprice(self)
 
             # MEMORY
             if op == BYTE:    byte(self)

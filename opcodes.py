@@ -33,6 +33,9 @@ SHL = 0x1B
 SHR = 0x1C
 SAR = 0x1D
 
+# MISC
+SHA3 = 0x20
+
 # ENV
 ADDRESS        = 0x30
 BALANCE        = 0x31
