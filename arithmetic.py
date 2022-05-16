@@ -1,19 +1,20 @@
 from utils import *
+from number import *
 
 # TODO: check for overflow
 def add(cpu):
-    a, b = cpu.stack.pop(), cpu.stack.pop()
+    a, b = Number(cpu.stack.pop()), Number(cpu.stack.pop())
     cpu.stack.push(a + b)
     cpu.pc += 1
 
 def mul(cpu):
-    a, b = cpu.stack.pop(), cpu.stack.pop()
+    a, b = Number(cpu.stack.pop()), Number(cpu.stack.pop())
     cpu.stack.push(a * b)
     cpu.pc += 1
 
 # TODO: check for underflow
 def sub(cpu):
-    a, b = cpu.stack.pop(), cpu.stack.pop()
+    a, b = Number(cpu.stack.pop()), Number(cpu.stack.pop())
     cpu.stack.push(a - b)
     cpu.pc += 1
 

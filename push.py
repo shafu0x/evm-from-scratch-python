@@ -1,3 +1,7 @@
 def _push(cpu, n):
-    for _ in range(n): cpu.stack.push(cpu.peek())
-    cpu.pc += n+1
+    cpu.pc += 1
+    value = []
+    for _ in range(n): 
+        value.append(cpu.peek())
+        cpu.pc += 1
+    cpu.stack.push(value)

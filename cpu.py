@@ -24,8 +24,8 @@ class CPU:
     def reset(self):
         self.pc, self.stack = 0, Stack()
 
-    def peek(self, i=1):
-        return self.program[self.pc + i]
+    def peek(self):
+        return self.program[self.pc]
 
     def run(self):
         op = self.program[self.pc]
