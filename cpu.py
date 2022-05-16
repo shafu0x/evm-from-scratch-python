@@ -71,6 +71,7 @@ class CPU:
             # MEMORY
             # if op == MLOAD: (self)
             if op == MSTORE8: mstore8(self)
+            if op == MSTORE:  mstore(self)
 
             # PUSH
             if op == PUSH1:   _push(self, 1)
