@@ -44,15 +44,18 @@ class CPU:
             print("pc: " , self.pc)
 
             # ARITHMETIC
-            if op == ADD:    add(self)
-            if op == MUL:    mul(self)
-            if op == SUB:    sub(self)
-            if op == DIV:    div(self)
-            if op == SDIV:   sdiv(self)
-            if op == MOD:    mod(self)
-            if op == SMOD:   smod(self)
-            if op == ADDMOD: addmod(self)
-            if op == EXP:    exp(self)
+            if op == ADD:        add(self)
+            if op == MUL:        mul(self)
+            if op == SUB:        sub(self)
+            if op == DIV:        div(self)
+            if op == SDIV:       sdiv(self)
+            if op == MOD:        mod(self)
+            if op == SMOD:       smod(self)
+            if op == ADDMOD:     addmod(self)
+            if op == MULMOD:     mulmod(self)
+            if op == ADDMOD:     addmod(self)
+            if op == EXP:        exp(self)
+            if op == SIGNEXTEND: signextend(self)
 
             # COMP
             if op == LT:     lt(self)
@@ -78,6 +81,7 @@ class CPU:
             if op == CALLVALUE: callvalue(self)
 
             # MEMORY
+            if op == BYTE:    byte(self)
             if op == MLOAD:   mload(self)
             if op == MSTORE8: mstore8(self)
             if op == MSTORE:  mstore(self)
