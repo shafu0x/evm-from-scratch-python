@@ -48,11 +48,11 @@ def calldatacopy(cpu):
     size = cpu.stack.pop().value
 
     calldata = cpu.calldata[offset:offset+size]
-    cpu.memory.store(destOffset, calldata)
+    memory_expansion_cost = cpu.memory.store(destOffset, calldata)
 
     static_gas = 3
     minimum_word_size = (size + 31) // 32
-    dynamic_gas = 3 * minimum_word_size # TODO: + memory_expansion_cost
+    dynamic_gas = 3 * minimum_word_size + memory_expansion_cost
     cpu.gas_dec(static_gas + dynamic_gas)
     cpu.pc += 1
 
