@@ -43,15 +43,18 @@ def calldatasize(cpu):
     cpu.gas_dec(2)
 
 def calldatacopy(cpu):
-    destOffset = cpu.stack.pop()
-    offset = cpu.stack.pop()
-    size = cpu.stack.pop()
-    # TODO: copy to memory
-    cpu.pc += 1
+    destOffset = cpu.stack.pop().value
+    offset = cpu.stack.pop().value
+    size = cpu.stack.pop().value
 
-    minimum_word_size = (size + 31) / 32
+    calldata = cpu.calldata[offset:offset+size]
+    cpu.memory.store(destOffset, calldata)
+
+    static_gas = 3
+    minimum_word_size = (size + 31) // 32
     dynamic_gas = 3 * minimum_word_size # TODO: + memory_expansion_cost
-    cpu.gas_dec(3 + dynamic_gas)
+    cpu.gas_dec(static_gas + dynamic_gas)
+    cpu.pc += 1
 
 def codesize(cpu):
     cpu.stack.push(0x00)

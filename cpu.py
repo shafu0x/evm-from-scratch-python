@@ -11,23 +11,29 @@ from storage import *
 from memory_ops import *
 from misc import *
 
-GAS = 21000
 
 # TODO: rename to execution engine or something
 class CPU:
-    def __init__(self):
+    def __init__(self, program, gas, calldata=[]):
         self.pc = 0
         self.stack = Stack()
         self.memory = Memory()
         self.storage = Storage()
-        self.program = []
-        self.gas = GAS # TODO
+        self.program = self.load(program)
 
+        # inputs to program
+        self.gas = gas # TODO
+        self.calldata = calldata
+
+        # output
+        self.return_value = []
+
+        # cache
         self.address_cache = []
 
     def load(self, program):
         self.reset()
-        self.program = program
+        return program
 
     def reset(self):
         self.pc, self.stack = 0, Stack()

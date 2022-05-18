@@ -21,3 +21,6 @@ class Memory:
         if len(value) < 32: raise Exception("mload: Not 32 Bytes")
 
         return value
+
+class ROM:
+    pass
