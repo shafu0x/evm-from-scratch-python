@@ -48,6 +48,15 @@ class CPU:
             raise Exception(f"{self.gas} gas left and {amount} gas required")
         self.gas -= amount
 
+    def access_address(self, address):
+        warm = False # check if address is warm or cold
+
+        if address in self.address_cache: warm = True
+        else                            : self.address_cache.append(address)
+
+        # TODO: return an address object
+        return warm, {"code": [0xFF]}
+
     def gas_inc(self, amount):
         self.gas += amount
 

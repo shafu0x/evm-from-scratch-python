@@ -83,17 +83,13 @@ def gasprice(cpu):
     cpu.gas_dec(2)
 
 def extcodesize(cpu):
-    # TODO: add address to cache
     address = cpu.stack.pop()
 
-    # TODO
-    def get_address_codesize(address):
-        return 0xFF
+    warm, address_data = cpu.access_address(address)
+    cpu.stack.push(address_data["code"])
 
-    cpu.stack.push(get_address_codesize(address))
-
+    cpu.gas_dec(100 if warm else 2600)
     cpu.pc += 1
-    cpu.gas_dec(100 if address in cpu.address_cache else 2600)
 
 def extcodecopy(cpu):
     address = cpu.stack.pop()
