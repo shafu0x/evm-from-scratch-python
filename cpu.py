@@ -14,15 +14,17 @@ from misc import *
 
 # TODO: rename to execution engine or something
 class CPU:
-    def __init__(self, program, gas, calldata=[]):
+    def __init__(self, program, available_gas, calldata=[]):
         self.pc = 0
         self.stack = Stack()
         self.memory = Memory()
         self.storage = Storage()
         self.program = self.load(program)
+        # TODO: add this logic
+        self.gas_used = 21000
 
         # inputs to program
-        self.gas = gas # TODO
+        self.gas = available_gas # TODO
         self.calldata = calldata
 
         # output

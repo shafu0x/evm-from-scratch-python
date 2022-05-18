@@ -12,6 +12,7 @@ class Memory:
         # increase memory if not enough available
         if len(self.memory) < offset:
             while len(self.memory) < offset:
+                # TODO: calculate memory expansion cost
                 self.memory.append(0x00)
 
         self.memory[offset:len(value)] = value
@@ -21,6 +22,10 @@ class Memory:
         if len(value) < 32: raise Exception("mload: Not 32 Bytes")
 
         return value
+
+    def memory_expansion_gas(self):
+        memory_size_word = (memory_byte_size + 31) / 32
+        memory_cost = (memory_size_word ** 2) / 512 + (3 * memory_size_word)
 
 class ROM:
     pass
