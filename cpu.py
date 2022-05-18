@@ -28,7 +28,7 @@ class CPU:
         self.calldata = calldata
 
         # output
-        self.return_value = []
+        self.returndata = []
 
         # cache
         self.address_cache = []

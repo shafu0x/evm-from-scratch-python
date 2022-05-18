@@ -101,6 +101,7 @@ def extcodecopy(cpu):
     extcode = address_data.code[offset:offset+size]
     memory_expansion_cost = cpu.memory.store(destOffset, extcode)
 
+    # refactor this in seperate method
     minimum_word_size = (size + 31) / 32
     dynamic_gas = 3 * minimum_word_size + memory_expansion_cost
     address_access_cost = 100 if warm else 2600
@@ -109,10 +110,9 @@ def extcodecopy(cpu):
     cpu.pc += 1
 
 def returndatasize(cpu):
-    cpu.stack.push(0xFF)
+    cpu.stack.push(len(cpu.returndata))
     cpu.pc += 1
-    # TODO: dynamic stuff
-    cpu.gas_dec(100)
+    cpu.gas_dec(2)
 
 def returndatacopy(cpu):
     destOffset = cpu.stack.pop()
