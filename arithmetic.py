@@ -1,23 +1,21 @@
 from utils import *
 from number import *
 
-# TODO: check for overflow
 def add(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value
-    cpu.stack.push(a + b)
+    cpu.stack.push(a + b % MAX_UINT)
     cpu.pc += 1
     cpu.gas_dec(3)
 
 def mul(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value
-    cpu.stack.push(a * b)
+    cpu.stack.push(a * b % MAX_UINT)
     cpu.pc += 1
     cpu.gas_dec(5)
 
-# TODO: check for underflow
 def sub(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value
-    cpu.stack.push(a - b)
+    cpu.stack.push(a - b % MAX_UINT)
     cpu.pc += 1
     cpu.gas_dec(3)
 
@@ -27,6 +25,7 @@ def div(cpu):
     cpu.pc += 1
     cpu.gas_dec(5)
 
+# TODO: overflow protection
 def sdiv(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value
     cpu.stack.push(0 if b == 0 else a // b)

@@ -136,5 +136,6 @@ class CPU:
 
             op = self.program[self.pc]
 
+            print("gas: ", self.gas)
             print("stack: ", self.stack)
             print("memory: ", self.memory.memory)
