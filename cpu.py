@@ -55,7 +55,7 @@ class CPU:
         else                            : self.address_cache.append(address)
 
         # TODO: return an address object
-        return warm, {"code": [0xFF]}
+        return warm, {"codesize": 0xFF, "code": [0xFF]}
 
     def gas_inc(self, amount):
         self.gas += amount
