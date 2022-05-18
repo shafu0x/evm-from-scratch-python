@@ -13,7 +13,7 @@ from misc import *
 
 GAS = 21000
 
-# TODO: rename to execution engine or something similar
+# TODO: rename to execution engine or something
 class CPU:
     def __init__(self):
         self.pc = 0
