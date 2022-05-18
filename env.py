@@ -53,6 +53,7 @@ def calldatacopy(cpu):
     static_gas = 3
     minimum_word_size = (size + 31) // 32
     dynamic_gas = 3 * minimum_word_size + memory_expansion_cost
+
     cpu.gas_dec(static_gas + dynamic_gas)
     cpu.pc += 1
 
@@ -62,15 +63,19 @@ def codesize(cpu):
     cpu.gas_dec(2)
 
 def codecopy(cpu):
-    destOffset = cpu.stack.pop()
-    offset = cpu.stack.pop()
-    size = cpu.stack.pop()
-    # TODO: copy to memory
-    cpu.pc += 1
+    destOffset = cpu.stack.pop().value
+    offset = cpu.stack.pop().value
+    size = cpu.stack.pop().value
 
+    code = cpu.program[offset:offset+size]
+    memory_expansion_cost = cpu.memory.store(destOffset, code)
+
+    static_gas = 3
     minimum_word_size = (size + 31) / 32
-    dynamic_gas = 3 * minimum_word_size # TODO: + memory_expansion_cost
-    cpu.gas_dec(3 + dynamic_gas)
+    dynamic_gas = 3 * minimum_word_size + memory_expansion_cost
+
+    cpu.gas_dec(static_gas + dynamic_gas)
+    cpu.pc += 1
 
 def gasprice(cpu):
     cpu.stack.push(0x00)
