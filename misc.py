@@ -7,5 +7,8 @@ def sha3(cpu):
     cpu.stack.push(keccak(value))
 
     cpu.pc += 1
-    # TODO
-    cpu.gas_dec(30)
+
+    # calculate gas
+    minimum_word_size = (size + 31) / 32
+    dynamic_gas = 6 * minimum_word_size # TODO: + memory_expansion_cost
+    cpu.gas_dec(30 + dynamic_gas)

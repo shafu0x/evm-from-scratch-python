@@ -4,11 +4,17 @@ def address(cpu):
     cpu.gas_dec(3)
 
 def balance(cpu):
-    cpu.stack.push(0xFF)
-    cpu.pc += 1
+    # TODO: add address to cache
+    address = cpu.stack.pop()
 
-    # TODO: dynamic stuff
-    cpu.gas_dec(100)
+    def get_address_balance(address):
+        return 0xFF
+
+    # TODO: get balance of address
+    cpu.stack.push(get_address_balance(address))
+
+    cpu.pc += 1
+    cpu.gas_dec(100 if address in cpu.address_cache else 2600)
 
 def origin(cpu):
     cpu.stack.push("0xD912bCb457Ea4FB70EEAD8cfbbb97a32319e4dC7")

@@ -23,6 +23,8 @@ class CPU:
         self.program = []
         self.gas = GAS # TODO
 
+        self.address_cache = []
+
     def load(self, program):
         self.reset()
         self.program = program

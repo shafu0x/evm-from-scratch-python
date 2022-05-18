@@ -2,7 +2,7 @@ MIN_UINT = 0
 MAX_UINT = 2**256
 
 MIN_INT = -2*255
-MAX_INT = 2**255-1
+MAX_INT =  2**255-1
 
 class Number:
     def __init__(self, value):

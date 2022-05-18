@@ -46,7 +46,8 @@ def smod(cpu):
     cpu.gas_dec(5)
 
 def addmod(cpu):
-    a, b, N = cpu.stack.pop().value, cpu.stack.pop().value, cpu.stack.pop().value
+    a, b = cpu.stack.pop().value, cpu.stack.pop().value
+    N = cpu.stack.pop().value
     cpu.stack.push((a + b) % N)
     cpu.pc += 1
     cpu.gas_dec(8)
