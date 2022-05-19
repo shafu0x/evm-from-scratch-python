@@ -19,6 +19,7 @@ def selfdestruct(cpu):
     # TODO: send address all the balance
     # something with cpu.balance
 
+    cpu.stop_flag = True
     cpu.pc += 1
     cpu.gas_dec(5000)
 

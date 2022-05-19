@@ -152,3 +152,12 @@ SWAP14 = 0x9D
 SWAP15 = 0x9E
 SWAP16 = 0x9F
 
+def str_2_opcode(opcode_name):
+    return globals()[opcode_name]
+def opcode_2_str(opcode):
+    for k,v in globals().items():
+        if v == opcode: return k
+
+def is_valid(opcode):
+    if opcode == 0xFE: return False
+    return opcode_2_str(opcode) in globals()

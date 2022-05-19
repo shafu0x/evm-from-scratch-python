@@ -75,16 +75,16 @@ class CPU:
 
     # check if we want to run the next opcode
     def exec_next_opcode(self):
-        if self.pc+1 >= len(self.program): return False
-        if self.stop_flag                : return False
+        if self.pc > len(self.program)-1      : return False
+        if self.stop_flag                     : return False
+        if not is_valid(self.program[self.pc]): return False
 
         return True
 
     def run(self):
-        op = self.program[self.pc]
-
         # run until we run out of opcodes
         while self.exec_next_opcode():
+            op = self.program[self.pc]
             print("op: ", hex(op))
             print("pc: " , self.pc)
 
@@ -222,8 +222,8 @@ class CPU:
             if op == SWAP15:  _swap(self, 15)
             if op == SWAP16:  _swap(self, 16)
 
-            op = self.program[self.pc]
-
             print("gas: ", self.gas)
             print("stack: ", self.stack)
             print("memory: ", self.memory.memory)
+
+        # TODO: return things
