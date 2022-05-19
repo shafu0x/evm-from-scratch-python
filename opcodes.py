@@ -152,6 +152,8 @@ SWAP14 = 0x9D
 SWAP15 = 0x9E
 SWAP16 = 0x9F
 
+# you could have a list of all opcodes but 
+# I was to lazy to do that
 def str_2_opcode(opcode_name):
     return globals()[opcode_name]
 def opcode_2_str(opcode):
