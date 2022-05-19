@@ -32,6 +32,8 @@ class CPU:
         self.storage = Storage()
         self.program = self.load(program)
 
+        self.stop_flag = False
+
         # inputs to program
         self.gas = available_gas # TODO
         self.calldata = calldata
@@ -71,11 +73,18 @@ class CPU:
     def gas_inc(self, amount):
         self.gas += amount
 
+    # check if we want to run the next opcode
+    def exec_next_opcode(self):
+        if self.pc+1 >= len(self.program): return False
+        if self.stop_flag                : return False
+
+        return True
+
     def run(self):
         op = self.program[self.pc]
 
         # run until we run out of opcodes
-        while self.pc+1 < len(self.program):
+        while self.exec_next_opcode():
             print("op: ", hex(op))
             print("pc: " , self.pc)
 

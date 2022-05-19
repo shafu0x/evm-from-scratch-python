@@ -26,5 +26,6 @@ def _return(cpu):
     offset, size = cpu.stack.pop().value, cpu.stack.pop().value
     cpu.returndata = cpu.memory.access(offset, size)
 
+    cpu.stop_flag = True
     cpu.pc += 1
     cpu.gas_dec(0)
