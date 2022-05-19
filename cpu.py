@@ -10,6 +10,7 @@ from memory import *
 from storage import *
 from memory_ops import *
 from misc import *
+from account import *
 
 
 # TODO: rename to execution engine or something
@@ -27,11 +28,14 @@ class CPU:
         self.gas = available_gas # TODO
         self.calldata = calldata
 
-        # output
-        self.returndata = []
+        # output of prev call
+        self.prev_returndata = []
 
         # cache
         self.address_cache = []
+
+        # output 
+        self.returndata = []
 
     def load(self, program):
         self.reset()
@@ -45,17 +49,16 @@ class CPU:
 
     def gas_dec(self, amount):
         if self.gas - amount < 0: 
-            raise Exception(f"{self.gas} gas left and {amount} gas required")
+            raise Exception(f"{self.gas} gas left and {amount} required")
         self.gas -= amount
 
-    def access_address(self, address):
+    def access_account(self, address):
         warm = False # check if address is warm or cold
 
         if address in self.address_cache: warm = True
         else                            : self.address_cache.append(address)
 
-        # TODO: return an address object
-        return warm, {"codesize": 0xFF, "code": [0xFF], "balance": 0xFF}
+        return warm, Account([0xFF], 0xAA)
 
     def gas_inc(self, amount):
         self.gas += amount

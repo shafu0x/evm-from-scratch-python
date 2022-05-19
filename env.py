@@ -5,9 +5,8 @@ def address(cpu):
 
 def balance(cpu):
     address = cpu.stack.pop()
-
-    warm, address_data = cpu.access_address(address)
-    cpu.stack.push(address_data.balance)
+    warm, account = cpu.access_account(address)
+    cpu.stack.push(account.balance)
 
     cpu.pc += 1
     cpu.gas_dec(100 if warm else 2600)
@@ -81,8 +80,8 @@ def gasprice(cpu):
 def extcodesize(cpu):
     address = cpu.stack.pop()
 
-    warm, address_data = cpu.access_address(address)
-    cpu.stack.push(address_data["code"])
+    warm, account = cpu.access_account(address)
+    cpu.stack.push(account.codesize)
 
     cpu.gas_dec(100 if warm else 2600)
     cpu.pc += 1
@@ -93,8 +92,8 @@ def extcodecopy(cpu):
     offset = cpu.stack.pop()
     size = cpu.stack.pop()
 
-    warm, address_data = cpu.access_address(address)
-    extcode = address_data.code[offset:offset+size]
+    warm, account = cpu.access_account(address)
+    extcode = account.code[offset:offset+size]
     memory_expansion_cost = cpu.memory.store(destOffset, extcode)
 
     # refactor this in seperate method
@@ -106,7 +105,7 @@ def extcodecopy(cpu):
     cpu.pc += 1
 
 def returndatasize(cpu):
-    cpu.stack.push(len(cpu.returndata))
+    cpu.stack.push(len(cpu.prev_returndata))
     cpu.pc += 1
     cpu.gas_dec(2)
 
@@ -115,24 +114,24 @@ def returndatacopy(cpu):
     offset = cpu.stack.pop()
     size = cpu.stack.pop()
 
-    cpu.pc += 1
+    returndata = cpu.program[offset:offset+size]
+    memory_expansion_cost = cpu.memory.store(destOffset, returndata)
 
     minimum_word_size = (size + 31) / 32
-    dynamic_gas = 3 * minimum_word_size # TODO: + memory_expansion_cost
+    dynamic_gas = 3 * minimum_word_size + memory_expansion_cost
+
     cpu.gas_dec(3 + dynamic_gas)
+    cpu.pc += 1
 
 
 def extcodehash(cpu):
     address = cpu.stack.pop()
 
-    def get_address_code_hash(address):
-        # TODO: check if EOA or not
-        return 0xFF
+    warm, account = cpu.access_account(address)
+    cpu.stack.push(account.hash)
 
-    cpu.stack.push(get_address_code_hash(address))
-
+    cpu.gas_dec(100 if warm else 2600)
     cpu.pc += 1
-    cpu.gas_dec(100 if address in cpu.address_cache else 2600)
 
 def blockhash(cpu):
     blockNumber = cpu.stack.pop().value
