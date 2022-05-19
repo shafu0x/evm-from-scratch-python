@@ -74,7 +74,8 @@ class CPU:
     def run(self):
         op = self.program[self.pc]
 
-        while op != STOP:
+        # run until we run out of opcodes
+        while self.pc+1 < len(self.program):
             print("op: ", hex(op))
             print("pc: " , self.pc)
 
