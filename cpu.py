@@ -13,6 +13,7 @@ from misc import *
 from account import *
 from storage import *
 from jump import *
+from dup import *
 
 
 # TODO: rename to execution engine or something
@@ -169,6 +170,24 @@ class CPU:
             if op == PUSH30:  _push(self, 30)
             if op == PUSH31:  _push(self, 31)
             if op == PUSH32:  _push(self, 32)
+
+            # DUP
+            if op == DUP1:   _dup(self, 1)
+            if op == DUP2:   _dup(self, 2)
+            if op == DUP3:   _dup(self, 3)
+            if op == DUP4:   _dup(self, 4)
+            if op == DUP5:   _dup(self, 5)
+            if op == DUP6:   _dup(self, 6)
+            if op == DUP7:   _dup(self, 7)
+            if op == DUP8:   _dup(self, 8)
+            if op == DUP9:   _dup(self, 9)
+            if op == DUP10:  _dup(self, 10)
+            if op == DUP11:  _dup(self, 11)
+            if op == DUP12:  _dup(self, 12)
+            if op == DUP13:  _dup(self, 13)
+            if op == DUP14:  _dup(self, 14)
+            if op == DUP15:  _dup(self, 15)
+            if op == DUP16:  _dup(self, 16)
 
             op = self.program[self.pc]
 
