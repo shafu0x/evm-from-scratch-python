@@ -12,6 +12,7 @@ from memory_ops import *
 from misc import *
 from account import *
 from storage import *
+from jump import *
 
 
 # TODO: rename to execution engine or something
@@ -128,6 +129,12 @@ class CPU:
             # MEMORY
             if op == SLOAD:    sload(self)
             if op == SSTORE:   sstore(self)
+
+            # JUMP
+            if op == JUMP:      jump(self)
+            if op == JUMPI:     jumpi(self)
+            if op == PC:        pc(self)
+            if op == JUMPDEST:  jumpest(self)
 
             # PUSH
             if op == PUSH1:   _push(self, 1)
