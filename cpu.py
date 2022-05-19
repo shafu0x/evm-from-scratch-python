@@ -11,6 +11,7 @@ from storage import *
 from memory_ops import *
 from misc import *
 from account import *
+from storage import *
 
 
 # TODO: rename to execution engine or something
@@ -35,7 +36,6 @@ class CPU:
 
         # cache
         self.address_cache = []
-        self.storage_cache = []
 
         # output 
         self.returndata = []
@@ -124,6 +124,10 @@ class CPU:
             if op == MLOAD:   mload(self)
             if op == MSTORE8: mstore8(self)
             if op == MSTORE:  mstore(self)
+
+            # MEMORY
+            if op == SLOAD:    sload(self)
+            if op == SSTORE:   sstore(self)
 
             # PUSH
             if op == PUSH1:   _push(self, 1)
