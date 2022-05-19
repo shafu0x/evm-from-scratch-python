@@ -21,3 +21,10 @@ def selfdestruct(cpu):
 
     cpu.pc += 1
     cpu.gas_dec(5000)
+
+def _return(cpu):
+    offset, size = cpu.stack.pop().value, cpu.stack.pop().value
+    cpu.returndata = cpu.memory.access(offset, size)
+
+    cpu.pc += 1
+    cpu.gas_dec(0)

@@ -110,7 +110,9 @@ class CPU:
             if op == SHR: shr(self)
 
             # MISC
-            if op == SHA3: sha3(self)
+            if op == SHA3:         sha3(self)
+            if op == SELFDESTRUCT: selfdestruct(self)
+            if op == RETURN:       _return(self)
 
             # ENV
             if op == ADDRESS:      address(self)
