@@ -28,7 +28,17 @@ def callvalue(cpu):
 
 def calldataload(cpu):
     i = cpu.stack.pop()
-    cpu.stack.push(0x00)
+
+    delta = 0
+    if i+32 > len(cpu.calldata):
+        delta = i+32 - len(cpu.calldata)
+
+    # always has to be 32 bytes
+    # if its not we append 0x00 bytes until it is
+    calldata = cpu.calldata[i:i+32-delta]
+    calldata += 0x00*delta
+
+    cpu.stack.push(calldata)
     cpu.pc += 1
     cpu.gas_dec(3)
 

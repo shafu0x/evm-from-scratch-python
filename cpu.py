@@ -15,21 +15,23 @@ from account import *
 
 # TODO: rename to execution engine or something
 class CPU:
-    def __init__(self, program, available_gas, calldata=[]):
+    def __init__(self, 
+                 program,
+                 available_gas,
+                 calldata=[],
+                 prev_returndata=[]):
         self.pc = 0
         self.stack = Stack()
         self.memory = Memory()
         self.storage = Storage()
         self.program = self.load(program)
-        # TODO: add this logic
-        self.gas_used = 21000
 
         # inputs to program
         self.gas = available_gas # TODO
         self.calldata = calldata
 
         # output of prev call
-        self.prev_returndata = []
+        self.prev_returndata = prev_returndata
 
         # cache
         self.address_cache = []
