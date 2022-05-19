@@ -12,3 +12,12 @@ def sha3(cpu):
     minimum_word_size = (size + 31) / 32
     dynamic_gas = 6 * minimum_word_size # TODO: + memory_expansion_cost
     cpu.gas_dec(30 + dynamic_gas)
+
+def selfdestruct(cpu):
+    address = cpu.stack.pop().value
+
+    # TODO: send address all the balance
+    # something with cpu.balance
+
+    cpu.pc += 1
+    cpu.gas_dec(5000)

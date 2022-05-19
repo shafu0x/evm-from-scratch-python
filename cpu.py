@@ -21,10 +21,12 @@ from swap import *
 class CPU:
     def __init__(self, 
                  program,
+                 balance,
                  available_gas,
                  calldata=[],
                  prev_returndata=[]):
         self.pc = 0
+        self.balance = balance
         self.stack = Stack()
         self.memory = Memory()
         self.storage = Storage()
