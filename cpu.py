@@ -30,11 +30,12 @@ class CPU:
         self.gas = available_gas # TODO
         self.calldata = calldata
 
-        # output of prev call
+        # return of prev call
         self.prev_returndata = prev_returndata
 
         # cache
         self.address_cache = []
+        self.storage_cache = []
 
         # output 
         self.returndata = []
