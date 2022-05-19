@@ -14,6 +14,7 @@ from account import *
 from storage import *
 from jump import *
 from dup import *
+from swap import *
 
 
 # TODO: rename to execution engine or something
@@ -188,6 +189,24 @@ class CPU:
             if op == DUP14:  _dup(self, 14)
             if op == DUP15:  _dup(self, 15)
             if op == DUP16:  _dup(self, 16)
+
+            # SWAP
+            if op == SWAP1:   _swap(self, 1)
+            if op == SWAP2:   _swap(self, 2)
+            if op == SWAP3:   _swap(self, 3)
+            if op == SWAP4:   _swap(self, 4)
+            if op == SWAP5:   _swap(self, 5)
+            if op == SWAP6:   _swap(self, 6)
+            if op == SWAP7:   _swap(self, 7)
+            if op == SWAP8:   _swap(self, 8)
+            if op == SWAP9:   _swap(self, 9)
+            if op == SWAP10:  _swap(self, 10)
+            if op == SWAP11:  _swap(self, 11)
+            if op == SWAP12:  _swap(self, 12)
+            if op == SWAP13:  _swap(self, 13)
+            if op == SWAP14:  _swap(self, 14)
+            if op == SWAP15:  _swap(self, 15)
+            if op == SWAP16:  _swap(self, 16)
 
             op = self.program[self.pc]
 
