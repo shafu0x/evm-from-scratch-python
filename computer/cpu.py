@@ -34,6 +34,7 @@ class CPU:
         self.program = self.load(program)
 
         self.stop_flag = False
+        self.revert_flag = False
 
         # inputs to program
         self.gas = gas 
@@ -125,8 +126,6 @@ class CPU:
 
             # MISC
             if op == SHA3:         sha3(self)
-            if op == SELFDESTRUCT: selfdestruct(self)
-            if op == RETURN:       _return(self)
 
             # ENV
             if op == ADDRESS:      address(self)
@@ -234,8 +233,13 @@ class CPU:
             if op == LOG3:   log3(self)
             if op == LOG4:   log4(self)
 
+            if op == RETURN:       _return(self)
+            if op == REVERT:       revert(self)
+            if op == SELFDESTRUCT: selfdestruct(self)
+
             print("gas: ", self.gas)
             print("stack: ", self.stack)
             print("memory: ", self.memory.memory)
 
+        if self.revert_flag: pass # TODO: revert state
         # TODO: return things

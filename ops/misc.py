@@ -13,6 +13,23 @@ def sha3(cpu):
     dynamic_gas = 6 * minimum_word_size # TODO: + memory_expansion_cost
     cpu.gas_dec(30 + dynamic_gas)
 
+def _return(cpu):
+    offset, size = cpu.stack.pop().value, cpu.stack.pop().value
+    cpu.returndata = cpu.memory.access(offset, size)
+
+    cpu.stop_flag = True
+    cpu.pc += 1
+    cpu.gas_dec(0)
+
+def revert(cpu):
+    offset, size = cpu.stack.pop().value, cpu.stack.pop().value
+    cpu.returndata = cpu.memory.access(offset, size)
+
+    cpu.stop_flag = True
+    cpu.revert_flag = True
+    cpu.pc += 1
+    cpu.gas_dec(0)
+
 def selfdestruct(cpu):
     address = cpu.stack.pop().value
 
@@ -23,10 +40,3 @@ def selfdestruct(cpu):
     cpu.pc += 1
     cpu.gas_dec(5000)
 
-def _return(cpu):
-    offset, size = cpu.stack.pop().value, cpu.stack.pop().value
-    cpu.returndata = cpu.memory.access(offset, size)
-
-    cpu.stop_flag = True
-    cpu.pc += 1
-    cpu.gas_dec(0)

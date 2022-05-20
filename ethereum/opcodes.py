@@ -160,7 +160,7 @@ LOG4 = 0xA4
 # CONTRACT
 CREATE       = 0xF0
 CALL         = 0xF1
-CALLCODE     = 0xF2
+CALLCODE     = 0xF2 # legacy NOT supported by us, fixed by DELEGATECALL
 RETURN       = 0xF3
 DELEGATECALL = 0xF4
 CREATE2      = 0xF5
@@ -179,5 +179,5 @@ def opcode_2_str(opcode):
         if v == opcode: return k
 
 def is_valid(opcode):
-    if opcode == 0xFE: return False
+    if opcode == 0xFE or opcode == 0xF2: return False
     return opcode_2_str(opcode) in globals()
