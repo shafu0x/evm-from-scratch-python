@@ -22,7 +22,7 @@ class CPU:
     def __init__(self, 
                  program,
                  balance,
-                 available_gas,
+                 gas,
                  calldata=[],
                  prev_returndata=[]):
         self.pc = 0
@@ -35,7 +35,7 @@ class CPU:
         self.stop_flag = False
 
         # inputs to program
-        self.gas = available_gas # TODO
+        self.gas = gas 
         self.calldata = calldata
 
         # return of prev call
