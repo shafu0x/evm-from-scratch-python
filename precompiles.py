@@ -1,3 +1,4 @@
+# TODO: implementation
 def ecRecover(_hash, v, r, s): pass
 def sha2_256(data): pass
 def ripemd_160(data): pass

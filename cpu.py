@@ -56,6 +56,7 @@ class CPU:
 
     def reset(self):
         self.pc, self.stack = 0, Stack()
+        self.memory, self.storage =  Memory(), Storage()
 
     def peek(self):
         return self.program[self.pc]
