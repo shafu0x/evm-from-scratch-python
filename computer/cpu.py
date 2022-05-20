@@ -60,13 +60,14 @@ class CPU:
         self.pc, self.stack = 0, Stack()
         self.memory, self.storage =  Memory(), Storage()
 
-    def peek(self):
-        return self.program[self.pc]
+    def peek(self): return self.program[self.pc]
 
     def gas_dec(self, amount):
         if self.gas - amount < 0: 
             raise Exception(f"{self.gas} gas left and {amount} required")
         self.gas -= amount
+
+    def gas_inc(self, amount): self.gas += amount
 
     def access_account(self, address):
         warm = False # check if address is warm or cold
@@ -74,10 +75,7 @@ class CPU:
         if address in self.address_cache: warm = True
         else                            : self.address_cache.append(address)
 
-        return warm, Account([0xFF], 0xAA)
-
-    def gas_inc(self, amount):
-        self.gas += amount
+        return warm, Account([0xFF], 0xAA) # TODO: return proper Account
 
     # check if we want to run the next opcode
     def exec_next_opcode(self):
