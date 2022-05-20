@@ -8,6 +8,10 @@ class Log:
 
     def __str__(self): return f"Log: {self.data}"
 
+def calc_gas(topic_count, size, memory_expansion_cost=0):
+    # 375 := static_gas
+    return 375 * topic_count + 8 * size + memory_expansion_cost
+
 def log0(cpu):
     offset, size = cpu.stack.pop().value, cpu.stack.pop().value
 
@@ -16,8 +20,7 @@ def log0(cpu):
     cpu.append_log(log)
 
     cpu.pc += 1
-    # TODO: dynamic cost
-    cpu.gas_dec(375)
+    cpu.gas_dec(calc_gas(0, size))     # TODO: memeory expansion cost
 
 def log1(cpu):
     offset, size = cpu.stack.pop().value, cpu.stack.pop().value
@@ -28,8 +31,7 @@ def log1(cpu):
     cpu.append_log(log)
 
     cpu.pc += 1
-    # TODO: dynamic cost
-    cpu.gas_dec(750)
+    cpu.gas_dec(calc_gas(1, size))     # TODO: memeory expansion cost
 
 def log2(cpu):
     offset, size = cpu.stack.pop().value, cpu.stack.pop().value
@@ -40,8 +42,7 @@ def log2(cpu):
     cpu.append_log(log)
 
     cpu.pc += 1
-    # TODO: dynamic cost
-    cpu.gas_dec(1125)
+    cpu.gas_dec(calc_gas(2, size))     # TODO: memeory expansion cost
 
 def log3(cpu):
     offset, size = cpu.stack.pop().value, cpu.stack.pop().value
@@ -54,8 +55,7 @@ def log3(cpu):
     cpu.append_log(log)
 
     cpu.pc += 1
-    # TODO: dynamic cost
-    cpu.gas_dec(1500)
+    cpu.gas_dec(calc_gas(3, size))     # TODO: memeory expansion cost
 
 def log4(cpu):
     offset, size = cpu.stack.pop().value, cpu.stack.pop().value
@@ -69,5 +69,4 @@ def log4(cpu):
     cpu.append_log(log)
 
     cpu.pc += 1
-    # TODO: dynamic cost
-    cpu.gas_dec(1875)
+    cpu.gas_dec(calc_gas(4, size))     # TODO: memeory expansion cost
