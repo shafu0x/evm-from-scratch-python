@@ -1,5 +1,5 @@
 from utils import *
-from number import *
+from ethereum.number import *
 
 def add(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value

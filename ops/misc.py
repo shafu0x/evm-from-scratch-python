@@ -1,4 +1,4 @@
-from number import *
+from ethereum.number import *
 from eth_hash.auto import keccak
 
 def sha3(cpu):

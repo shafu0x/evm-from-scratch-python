@@ -1,4 +1,4 @@
-from number import Number
+from ethereum.number import Number
 
 class StackTooLargeException(Exception):
     pass

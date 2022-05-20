@@ -1,20 +1,19 @@
-from stack import Stack
-from opcodes import *
-from arithmetic import *
-from push import _push
-from comp import *
-from logic import *
-from bit import *
-from env import *
-from memory import *
-from storage import *
-from memory_ops import *
-from misc import *
-from account import *
-from storage import *
-from jump import *
-from dup import *
-from swap import *
+from computer.stack import Stack
+from ethereum.opcodes import *
+from ops.arithmetic import *
+from ops.push import _push
+from ops.comp import *
+from ops.logic import *
+from ops.bit import *
+from ops.env import *
+from computer.memory import *
+from computer.storage import *
+from ops.memory_ops import *
+from ops.misc import *
+from ethereum.account import *
+from ops.jump import *
+from ops.dup import *
+from ops.swap import *
 
 
 # TODO: rename to execution engine or something

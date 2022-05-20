@@ -1,4 +1,4 @@
-from opcodes import *
+from ethereum.opcodes import *
 
 def jump(cpu):
     counter = cpu.stack.pop().value

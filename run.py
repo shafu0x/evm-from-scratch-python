@@ -1,4 +1,4 @@
-from cpu import CPU
+from computer.cpu import CPU
 
 GAS = 21000
 BALANCE = 500 # in wei
