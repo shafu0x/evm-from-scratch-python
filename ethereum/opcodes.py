@@ -35,8 +35,6 @@ SAR = 0x1D
 
 # MISC
 SHA3 = 0x20
-RETURN = 0xF3
-SELFDESTRUCT = 0xFF
 
 # ENV
 ADDRESS        = 0x30
@@ -151,6 +149,26 @@ SWAP13 = 0x9C
 SWAP14 = 0x9D
 SWAP15 = 0x9E
 SWAP16 = 0x9F
+
+# LOG
+LOG0 = 0xA0
+LOG1 = 0xA1
+LOG2 = 0xA2
+LOG3 = 0xA3
+LOG4 = 0xA4
+
+# CONTRACT
+CREATE       = 0xF0
+CALL         = 0xF1
+CALLCODE     = 0xF2
+RETURN       = 0xF3
+DELEGATECALL = 0xF4
+CREATE2      = 0xF5
+STATICCALL   = 0xFA
+REVERT       = 0xFD
+INVALID      = 0xFE
+SELFDESTRUCT = 0xFF
+
 
 # you could have a list of all opcodes but 
 # I was to lazy to do that

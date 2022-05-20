@@ -20,7 +20,7 @@ def log0(cpu):
     cpu.append_log(log)
 
     cpu.pc += 1
-    cpu.gas_dec(calc_gas(0, size))     # TODO: memeory expansion cost
+    cpu.gas_dec(calc_gas(0, size)) # TODO: memeory expansion cost
 
 def log1(cpu):
     offset, size = cpu.stack.pop().value, cpu.stack.pop().value
@@ -31,7 +31,7 @@ def log1(cpu):
     cpu.append_log(log)
 
     cpu.pc += 1
-    cpu.gas_dec(calc_gas(1, size))     # TODO: memeory expansion cost
+    cpu.gas_dec(calc_gas(1, size)) # TODO: memeory expansion cost
 
 def log2(cpu):
     offset, size = cpu.stack.pop().value, cpu.stack.pop().value
@@ -42,7 +42,7 @@ def log2(cpu):
     cpu.append_log(log)
 
     cpu.pc += 1
-    cpu.gas_dec(calc_gas(2, size))     # TODO: memeory expansion cost
+    cpu.gas_dec(calc_gas(2, size)) # TODO: memeory expansion cost
 
 def log3(cpu):
     offset, size = cpu.stack.pop().value, cpu.stack.pop().value
@@ -55,7 +55,7 @@ def log3(cpu):
     cpu.append_log(log)
 
     cpu.pc += 1
-    cpu.gas_dec(calc_gas(3, size))     # TODO: memeory expansion cost
+    cpu.gas_dec(calc_gas(3, size)) # TODO: memeory expansion cost
 
 def log4(cpu):
     offset, size = cpu.stack.pop().value, cpu.stack.pop().value
@@ -69,4 +69,4 @@ def log4(cpu):
     cpu.append_log(log)
 
     cpu.pc += 1
-    cpu.gas_dec(calc_gas(4, size))     # TODO: memeory expansion cost
+    cpu.gas_dec(calc_gas(4, size)) # TODO: memeory expansion cost

@@ -14,6 +14,8 @@ from ethereum.account import *
 from ops.jump import *
 from ops.dup import *
 from ops.swap import *
+from ops.swap import *
+from ops.log import *
 
 
 # TODO: rename to execution engine or something
@@ -224,6 +226,13 @@ class CPU:
             if op == SWAP14:  _swap(self, 14)
             if op == SWAP15:  _swap(self, 15)
             if op == SWAP16:  _swap(self, 16)
+
+            # LOG
+            if op == LOG0:   log0(self)
+            if op == LOG1:   log1(self)
+            if op == LOG2:   log2(self)
+            if op == LOG3:   log3(self)
+            if op == LOG4:   log4(self)
 
             print("gas: ", self.gas)
             print("stack: ", self.stack)
