@@ -1,21 +1,27 @@
 from utils import *
 from ethereum.number import *
 
+# protect from under-overflow
+def protect(value):
+    if   value < 0       : return value + MAX_UINT       # handle underflow
+    elif value > MAX_UINT: return 0 + (value - MAX_UINT) # handle overflow
+    else                 : return value                  # nothing to handle
+
 def add(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value
-    cpu.stack.push(a + b % MAX_UINT)
+    cpu.stack.push(protect(a+b))
     cpu.pc += 1
     cpu.gas_dec(3)
 
 def mul(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value
-    cpu.stack.push(a * b % MAX_UINT)
+    cpu.stack.push(protect(a*b))
     cpu.pc += 1
     cpu.gas_dec(5)
 
 def sub(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value
-    cpu.stack.push(a - b % MAX_UINT)
+    cpu.stack.push(protect(a-b))
     cpu.pc += 1
     cpu.gas_dec(3)
 
@@ -48,19 +54,19 @@ def smod(cpu):
 def addmod(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value
     N = cpu.stack.pop().value
-    cpu.stack.push((a + b) % N)
+    cpu.stack.push(protect(a + b) % N)
     cpu.pc += 1
     cpu.gas_dec(8)
 
 def mulmod(cpu):
     a, b, N = cpu.stack.pop().value, cpu.stack.pop().value, cpu.stack.pop().value
-    cpu.stack.push((a + b) * N)
+    cpu.stack.push(protect(a + b) * N)
     cpu.pc += 1
     cpu.gas_dec(8)
 
 def exp(cpu):
     a, exponent = cpu.stack.pop().value, cpu.stack.pop()
-    cpu.stack.push(a ** exponent.value)
+    cpu.stack.push(protect(a ** exponent.value))
     cpu.pc += 1
     cpu.gas_dec(10 + (50 * len(exponent.bytes)))
 

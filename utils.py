@@ -13,5 +13,3 @@ def to32(value):
             value.insert(0, 0x00)
 
     return value
-
-
