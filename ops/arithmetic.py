@@ -2,10 +2,11 @@ from utils import *
 from ethereum.number import *
 
 # protect from under-overflow
+# always stay at 32 bytes!
 def protect(value):
     if   value < 0       : return value + MAX_UINT       # handle underflow
     elif value > MAX_UINT: return 0 + (value - MAX_UINT) # handle overflow
-    else                 : return value                  # nothing to handle
+    else                 : return value % MAX_UINT       # just to be sure           
 
 def add(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value
