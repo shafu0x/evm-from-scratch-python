@@ -2,7 +2,9 @@ class Memory:
     def __init__(self):
         self.memory = []
 
-    def access(self, offset, size): return self.memory[offset:offset+size]
+    def access(self, offset, size):
+        # TODO: there is some gas for accessing higher offsets
+        return self.memory[offset:offset+size]
 
     def store(self, offset, value):
         memory_expansion_cost = 0
