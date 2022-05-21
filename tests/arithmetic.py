@@ -15,7 +15,7 @@ class TestArithmetic(unittest.TestCase):
 
         self.assertEqual(cpu.stack.get(0).value, 0x05)
 
-    def test_add(self):
+    def test_mul(self):
         PROGRAM = PUSH + [0x02]
         cpu = CPU(PROGRAM, 0, 21000, [], [])
         cpu.run()
@@ -28,6 +28,27 @@ class TestArithmetic(unittest.TestCase):
         cpu.run()
 
         self.assertEqual(cpu.stack.get(0).value, MAX_UINT-1)
+
+    def test_div(self):
+        PROGRAM = PUSH + [0x04]
+        cpu = CPU(PROGRAM, 0, 21000, [], [])
+        cpu.run()
+
+        self.assertEqual(cpu.stack.get(0).value, 0)
+
+    def test_mod(self):
+        PROGRAM = PUSH + [0x06]
+        cpu = CPU(PROGRAM, 0, 21000, [], [])
+        cpu.run()
+
+        self.assertEqual(cpu.stack.get(0).value, 2)
+
+    def test_add_mod(self):
+        PROGRAM = PUSH + [0x60, 0x05, 0x08]
+        cpu = CPU(PROGRAM, 0, 21000, [], [])
+        cpu.run()
+
+        self.assertEqual(cpu.stack.get(0).value, 1)
 
 if __name__ == '__main__':
     unittest.main()

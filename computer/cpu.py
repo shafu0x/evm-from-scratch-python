@@ -102,7 +102,6 @@ class CPU:
             if op == SMOD:       smod(self)
             if op == ADDMOD:     addmod(self)
             if op == MULMOD:     mulmod(self)
-            if op == ADDMOD:     addmod(self)
             if op == EXP:        exp(self)
             if op == SIGNEXTEND: signextend(self)
 

@@ -55,6 +55,7 @@ def smod(cpu):
 def addmod(cpu):
     a, b = cpu.stack.pop().value, cpu.stack.pop().value
     N = cpu.stack.pop().value
+    print("addmod:", a,b,N)
     cpu.stack.push(protect(a + b) % N)
     cpu.pc += 1
     cpu.gas_dec(8)
