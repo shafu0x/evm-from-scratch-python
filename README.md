@@ -1,2 +1,5 @@
 # evm-from-scratch
-EVM in python from scratch because why not
+
+![alt text](/static/logo.png)
+
+An EVM from scratch implementation in Python for educational purposes.
